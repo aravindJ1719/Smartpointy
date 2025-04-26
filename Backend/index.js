@@ -37,7 +37,7 @@ const options = {
 	definition: {
 		openapi: "3.0.0",
 		info: {
-			title: "Dental Appointment System",
+			title: "Appointment System",
 			version: "1.0.0",
 			description: "A simple Express Library API",
 		},
