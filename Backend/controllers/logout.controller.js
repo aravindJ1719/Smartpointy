@@ -1,5 +1,5 @@
-const fs = require("fs");
-const { blackListModel } = require("../models/blacklist.model");
+import fs from "fs";
+import { blackListModel } from "../models/blacklist.model";
 
 const LogoutData =  async (req, res)=>{
     const Normal_Token = req.cookies.Normal_Token ||"";
@@ -12,4 +12,4 @@ const LogoutData =  async (req, res)=>{
     res.status(200).send("Log Out Successfully");
 }
 
-module.exports = { LogoutData }
+export default { LogoutData }

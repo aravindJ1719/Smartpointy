@@ -8,7 +8,12 @@ const swaggerJsDoc = require("swagger-jsdoc");
 
 const app = express();
 
+const mongoose = require('mongoose');
 
+mongoose.connect('aravind:aravind@9771@cluster0.d3gvio3.mongodb.net/web')
+  .then(() => console.log("Connected"))
+  .catch(err => console.error(err));
+  
 require("dotenv").config();
 
 
@@ -24,6 +29,7 @@ const { authenticate } = require("./middlewares/authentication");
 const { GntRouter } = require("./routes/generateNewToken.route");
 const { LogoutRouter } = require("./routes/logout.route");
 const { feedbackRouter } = require("./routes/feedbackForm.route");
+const { default: mongoose } = require("mongoose");
 
 
 // --------------->>>>>>>> Middlewares <<<<<<<<-------------------
