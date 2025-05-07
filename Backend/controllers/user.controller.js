@@ -1,10 +1,10 @@
-const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
+import { sign } from "jsonwebtoken";
+import { hash as _hash, compare } from "bcrypt";
 
 require("dotenv").config();
 
-const { UserModel } = require ("../models/user.model");
-const { sendEmail } = require("../services/mail");
+import { UserModel } from "../models/user.model";
+import { sendEmail } from "../services/mail";
 
 const signup = async (req, res) => {
     try {
@@ -13,7 +13,7 @@ const signup = async (req, res) => {
 
         if (isPresent.length === 0) {
             // encrypte password and register
-            bcrypt.hash(password, 5, async (err, hash) => {
+            _hash(password, 5, async (err, hash) => {
                 if (err) res.status(401).json({ error: err.message });
                 else {
                     const newUser = new UserModel({
@@ -48,7 +48,7 @@ const login = async (req, res) => {
         const hashPassword = UserData?.password;
 
         // compare
-        bcrypt.compare(password, hashPassword, (err, result) => {
+        compare(password, hashPassword, (err, result) => {
             if (result) {
                 // send otp
                 const otp = Math.floor(Math.random() * 10000)
@@ -63,12 +63,12 @@ const login = async (req, res) => {
                 });
 
                 // generate tokens
-                const Normal_Token = jwt.sign(
+                const Normal_Token = sign(
                     { userId: UserData._id },
                     process.env.NORMALKEY,
                     { expiresIn: "7d" }
                 );
-                const Refresh_Token = jwt.sign(
+                const Refresh_Token = sign(
                     { userId: UserData._id },
                     process.env.REFRESHKEY,
                     { expiresIn: "28d" }
@@ -121,4 +121,4 @@ const getUser = async (req, res) => {
 };
 
 
-module.exports = {signup ,login ,getalluser ,getUser}
+export default {signup ,login ,getalluser ,getUser}

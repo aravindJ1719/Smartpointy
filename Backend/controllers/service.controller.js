@@ -1,4 +1,4 @@
-const { ServiceModel } = require("../models/services.model");
+import { ServiceModel } from "../models/services.model";
 
 
 const getService = async (req, res) => {
@@ -59,6 +59,6 @@ const deleteService = async (req, res) => {
     }
 }
 
-module.exports = {  getService, addService, updateService, deleteService }
+export default {  getService, addService, updateService, deleteService }
 
 

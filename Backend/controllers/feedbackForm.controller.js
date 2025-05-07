@@ -1,6 +1,6 @@
 // --------------->>>>>>>> Feedback Model Location <<<<<<<<-------------------
 
-const { feedbackModel } = require("../models/feedbackForm.model");
+import { feedbackModel } from "../models/feedbackForm.model";
 
 
 // --------->>>> POST <<<<<---------
@@ -21,4 +21,4 @@ const feedbackPostData = async (req,res) => {
 }
 
 
-module.exports = { feedbackPostData }
+export default { feedbackPostData }

@@ -1,4 +1,4 @@
-const jwt = require ("jsonwebtoken");
+import { verify, sign } from "jsonwebtoken";
 require("dotenv").config();
 
 const GenerateToken = async (req, res) => {
@@ -6,11 +6,11 @@ const GenerateToken = async (req, res) => {
   
     if (!refreshtoken) res.status(401).send({ Message: "Please Login Again" });
   
-    jwt.verify(refreshtoken, process.env.REFRESHKEY, (err, decoded) => {
+    verify(refreshtoken, process.env.REFRESHKEY, (err, decoded) => {
       if (err) {
         res.status(401).send({ Message: "Contact to Administrator" });
       } else {
-        const Normal_Token = jwt.sign(
+        const Normal_Token = sign(
           {
             UserId: decoded._id,
             UserRole: decoded.Role,
@@ -31,4 +31,4 @@ const GenerateToken = async (req, res) => {
     });
   }
 
-  module.exports = { GenerateToken }
+  export default { GenerateToken }

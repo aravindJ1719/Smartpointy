@@ -1,4 +1,4 @@
-const { DoctorModel } = require("../models/doctors.model");
+import { DoctorModel } from "../models/doctors.model";
 
 
 const getDoctor = async (req, res) => {
@@ -60,4 +60,4 @@ const deleteDoctor = async (req, res) => {
 }
 
 
-module.exports = {  getDoctor, addDoctor, updateDoctor, deleteDoctor }
+export default {  getDoctor, addDoctor, updateDoctor, deleteDoctor }

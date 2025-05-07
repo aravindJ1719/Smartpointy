@@ -1,5 +1,5 @@
-const { AppointmentModel } = require("../models/appointment.model");
-const { sendEmail } = require("../services/mail");
+import { AppointmentModel } from "../models/appointment.model";
+import { sendEmail } from "../services/mail";
 
 
 const getAppointment = async (req, res) => {
@@ -77,4 +77,4 @@ const deleteAppointment = async (req, res) => {
 }
 
 
-module.exports = {  getAppointment, addAppointment, updateAppointment, deleteAppointment }
+export default {  getAppointment, addAppointment, updateAppointment, deleteAppointment }
